@@ -113,5 +113,14 @@ namespace DesiShop.Controllers.api
            
             return Ok(dataTabel);
         }
+        [HttpGet]
+        public async Task<ActionResult> NewProducts()
+        {
+            await Task.Delay(0);
+
+
+            var datatable = database.GetDataTable("select top(10) ProductId,Title,ImageUrl,Isfeatured,Discount,DiscountType,Price,ProductUrl from Products where Status ='1' order by ProductId Desc");
+            return Ok(datatable);
+        }
     }
 }

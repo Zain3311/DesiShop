@@ -4,19 +4,16 @@
     $("#btnlogin").click(function () {
 
 
-        
+
 
         var Email = $("#login-email").val();
         var Password = $("#login-password").val();
         if (Email.length == 0 || Password.length == 0) {
 
-            toastr['warning']('Please Fill the Form', 'Warning!', {
-                closeButton: true,
-                tapToDismiss: false
-            });
+            alert('Please Fill the Form');
             return;
         }
-        $(this).hide();
+        $(this).attr("disabled", true);
         var jsonObject = { "email": Email, "password": Password };
         $.ajax({
             type: "POST",
@@ -25,22 +22,14 @@
             contentType: 'application/json',
             success: function (response) {
                 if (response.message == "Login Successfully") {
-                   
-
-                    toastr['success']('Login Successfully', 'Success!',{
-                        closeButton: true,
-                        tapToDismiss: false
-                    });
 
                     Cookies.set('AccessToken', response.data.token, { expires: 7 });
-                        window.location.href = "/Dashboard";
-                    
+                    window.location.href = "/Home/Dashboard";
+
                 } else {
-                    $("#btnlogin").show();
-                    toastr['error'](response.message, 'Error!', {
-                        closeButton: true,
-                        tapToDismiss: false
-                    });
+
+                    $("#btnlogin").removeAttr("attr");
+                   alert(response.message)
                 }
             }
         });

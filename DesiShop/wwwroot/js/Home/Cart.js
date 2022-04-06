@@ -37,5 +37,5 @@ function RefreshPrice() {
         price += val.price * val.quantiy;
     })
     $('#lblTotal').html("Rs" + price)
-    $('#totalPrice').html("Rs" + price-100)
+    $('#totalPrice').html("Rs" + price - 100)
 }

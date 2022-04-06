@@ -82,7 +82,7 @@ namespace DesiShop.Controllers.api
             await Task.Delay(0);
            
 
-                var datatable = database.GetDataTable("select cat.CategoryId,cat.Title, cat.CategoryUrl, ProductCount = (select COUNT(CategoryId) from CategoryRegistration where Status = '1' and CategoryId = cat.CategoryId) from Categories as cat where cat.Status = '1'");
+                var datatable = database.GetDataTable("select top(10) cat.CategoryId,cat.Title, cat.CategoryUrl, ProductCount = (select COUNT(CategoryId) from CategoryRegistration where Status = '1' and CategoryId = cat.CategoryId) from Categories as cat where cat.Status = '1'");
 
             return Ok(datatable);
         }

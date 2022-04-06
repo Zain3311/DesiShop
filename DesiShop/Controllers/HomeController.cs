@@ -27,6 +27,10 @@ namespace DesiShop.Controllers
 
         public IActionResult Account()
         {
+            if (Request.Cookies["AccessToken"] != null)
+            {
+                return Redirect("Dashboard");
+            }
             return View();
         }
         public IActionResult Dashboard()
@@ -36,7 +40,7 @@ namespace DesiShop.Controllers
                 return Redirect("Account");
             }
             return View();
-        } 
+        }
         public IActionResult Shop()
         {
             return View();
@@ -48,24 +52,37 @@ namespace DesiShop.Controllers
         [Route("/product/{url}")]
         public IActionResult Product(string url)
         {
-           var product = database.GetDataTable($"select * from Products where Status ='1' and ProductUrl='{url}'");
+            var product = database.GetDataTable($"select * from Products where Status ='1' and ProductUrl='{url}'");
             ViewBag.product = product.AsEnumerable();
-            if(product.Rows.Count == 0)
+            if (product.Rows.Count == 0)
             {
                 return NotFound();
             }
             var productId = product.Rows[0]["ProductId"].ToString();
-            var categories = database.GetDataTable($"select * from CategoryRegistration where Status ='1' and ProductId='{productId}'");
-            ViewBag.categories = categories.AsEnumerable();
+            //var categories = database.GetDataTable($"select * from CategoryRegistration where Status ='1' and ProductId='{productId}'");
+            //ViewBag.categories = categories.AsEnumerable();
             var images = database.GetDataTable($"select * from ProductImages where Status ='1' and ProductId='{productId}'");
             ViewBag.images = images.AsEnumerable();
 
             return View();
         }
+        [Route("/category/{url}")]
+        public IActionResult Category(string url)
+        {
+            var products = database.GetDataTable($"select CTitle = (select Title from Categories where CategoryUrl ='{url}' and Status=1),p.ProductId,p.Title,p.ImageUrl,p.Isfeatured,p.Discount,p.DiscountType,p.Price,p.ProductUrl from Products as p inner join CategoryRegistration as cat on cat.ProductId = p.ProductId where cat.Status=1 and cat.CategoryId=(select CategoryId from Categories where CategoryUrl ='{url}' and Status=1) and p.Status=1");
+            if (products.Rows.Count == 0)
+            {
+                return NotFound();
+            }
+            ViewBag.products = products;
+            return View();
+        }
 
+        [Route("/logout")]
         public IActionResult Logout()
         {
-            return Redirect("");
+            Response.Cookies.Delete("AccessToken");
+            return Redirect("/Home/Account");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
