@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "Shop";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+                <input type="text" class="form-control sort-box m-tb-40" placeholder="Search Products"/>
+
+            <div class="product-tab-area">
+                <div class="tab-content tab-animate-zoom">
+                    <div class="tab-pane show active shop-grid" id="sort-grid">
+                        <div class="row" id="productList"></div>
+                    </div>
+                </div>
+            </div>
+
+           
+        </div>
+    </div>
+</div>
+
+<script src="/js/Home/shop.js"></script>

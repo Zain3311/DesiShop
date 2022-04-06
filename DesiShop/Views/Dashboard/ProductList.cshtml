@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewData["Title"] = "Product List";
+    Layout = "/Views/Shared/_Dashboard_layout.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="/dashboard/app-assets/vendors/css/vendors.min.css">
+<link rel="stylesheet" type="text/css" href="/dashboard/app-assets/vendors/css/extensions/nouislider.min.css">
+<!-- END: Vendor CSS-->
+<!-- BEGIN: Theme CSS-->
+<link rel="stylesheet" type="text/css" href="/dashboard/app-assets/css/plugins/extensions/ext-component-sliders.css">
+<link rel="stylesheet" type="text/css" href="/dashboard/app-assets/css/pages/app-ecommerce.css">
+<link rel="stylesheet" type="text/css" href="/dashboard/app-assets/css/plugins/extensions/ext-component-toastr.css">
+<!-- END: Page CSS-->
+<!-- BEGIN: Custom CSS-->
+<link rel="stylesheet" type="text/css" href="/dashboard/assets/css/style.css">
+
+<style>
+
+    .ecommerce-application .grid-view {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    @@media (max-width: 991.98px) {
+        .ecommerce-application .grid-view {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+
+    @@media (max-width: 575.98px) {
+        .ecommerce-application .grid-view, .ecommerce-application .grid-view.wishlist-items {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+<!-- END: Custom CSS-->
+<!-- BEGIN: Content-->
+<div class="app-content content ecommerce-application">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        
+        <div class="content-detached">
+            <div class="content-body">
+                <div class="body-content-overlay"></div>
+                <section id="ecommerce-searchbar" class="ecommerce-searchbar">
+                    <div class="row mt-1">
+                        <div class="col-sm-12">
+                            <div class="input-group input-group-merge">
+                                <input type="text" class="form-control search-product" id="shop-search" placeholder="Search Product" aria-label="Search..." aria-describedby="shop-search" />
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i data-feather="search" class="text-muted"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="productList" class="grid-view">
+                 
+                </section>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="sidenav-overlay"></div>
+<div class="drag-target"></div>
+
+<script src="/dashboard/app-assets/vendors/js/vendors.min.js"></script>
+<!-- BEGIN Vendor JS-->
+<!-- BEGIN: Page Vendor JS-->
+<script src="/dashboard/app-assets/vendors/js/extensions/wNumb.min.js"></script>
+<script src="/dashboard/app-assets/vendors/js/extensions/nouislider.min.js"></script>
+<script src="/dashboard/app-assets/vendors/js/extensions/toastr.min.js"></script>
+<!-- END: Page Vendor JS-->
+<!-- END: Page JS-->
+
+<script>
+    $(window).on('load', function () {
+        if (feather) {
+            feather.replace({
+                width: 14,
+                height: 14
+            });
+        }
+    })
+</script>
+<script src="/js/product.js"></script>

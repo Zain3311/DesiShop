@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewData["Title"] = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="section-content">
+                <h5 class="section-content__title">Your cart items</h5>
+            </div>
+            <!-- Start Cart Table -->
+            <div class="table-content table-responsive cart-table-content m-t-30">
+                <table>
+                    <thead class="gray-bg">
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Until Price</th>
+                            <th>Qty</th>
+                            <th>Subtotal</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tblCart">
+                    </tbody>
+                </table>
+            </div>  <!-- End Cart Table -->
+            <!-- Start Cart Table Button -->
+            <div class="cart-table-button m-t-10">
+                <div class="cart-table-button--left">
+                    <a href="/Home/Shop" class="btn btn--box btn--large btn--radius btn--green btn--green-hover-black btn--uppercase font--bold m-t-20">CONTINUE SHOPPING</a>
+                </div>
+            </div>  <!-- End Cart Table Button -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-6">
+            <div class="sidebar__widget m-t-40">
+                <span>Enter your destination</span>
+                <div class="form-box__single-group">
+                    <label for="txtPhone">* Phone Number</label>
+                    <input type="number" placeholder="Enter Phone Number" id="txtPhone" />
+                </div>
+                <div class="form-box__single-group">
+                    <label for="txtCity">* City</label>
+                    <input type="text" placeholder="Enter City" id="txtCity" />
+                </div>
+
+                <div class="form-box__single-group">
+                    <label for="txtZipcode">* Zip/Postal Code</label>
+                    <input type="text" id="txtZipcode" placeholder="Zip/Postal Code" />
+                </div>
+                <div class="form-box__single-group">
+                    <label for="txtAddress">* Address</label>
+                    <input type="text" id="txtAddress" placeholder="Enter Address" />
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="sidebar__widget m-t-40">
+                <div class="sidebar__box">
+                    <h5 class="sidebar__title">Cart Total</h5>
+                </div>
+                <h6 class="total-cost">Total products Price<span id="totalPrice"></span></h6>
+                <div class="total-shipping">
+                    <span>Total shipping</span>
+                    <ul class="shipping-cost m-t-10">
+                        <li>
+                            <span class="ship-price">Rs100.00</span>
+                        </li>
+                    </ul>
+                </div>
+                <h4 class="grand-total m-tb-25">Grand Total <span id="lblTotal"></span></h4>
+                <button class="btn btn--box btn--small btn--radius btn--green btn--green-hover-black btn--uppercase font--semi-bold" type="submit">PROCEED TO CHECKOUT</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/Home/Cart.js"></script>
