@@ -73,7 +73,7 @@ namespace DesiShop.Controllers.api
                     return Ok(res);
                 }
 
-                var result = database.ExecNonQuery($"INSERT INTO Users(UserId ,Name ,Email ,Password ,ImageUrl ,RoleId ,Status ,CreatedDateTime ,CreatedBy) VALUES ('{newuser.UserId}', '{newuser.Name}', '{newuser.Email}', '{EncryptionDecryption.Encrypt(newuser.Password)}', '{newuser.ImageUrl}', '{newuser.RoleId}','{newuser.Status}', '{DateTime.Now}', '{newuser.CreatedBy}')");
+                var result = database.ExecNonQuery($"INSERT INTO Users(UserId ,Name ,Email ,Password ,ImageUrl ,RoleId ,Status ,CreatedDateTime ,CreatedBy) VALUES ('{Guid.NewGuid().ToString()}', '{newuser.Name}', '{newuser.Email}', '{EncryptionDecryption.Encrypt(newuser.Password)}', '{newuser.ImageUrl}', '{newuser.RoleId}','{newuser.Status}', '{DateTime.Now}', '{newuser.CreatedBy}')");
 
                 if(result > 0)
                 {
@@ -93,6 +93,43 @@ namespace DesiShop.Controllers.api
             return Ok(res);
         }
 
+        [HttpPost]
+        public async Task<ActionResult> Signup(Signup newuser)
+        {
+            await Task.Delay(0);
+
+            Response res = new Response();
+
+            try
+            {
+                var CheckEmail = database.GetDataTable($"select * from Users where Email='{newuser.Email}'");
+
+                if (CheckEmail.Rows.Count > 0)
+                {
+                    res.message = "Email Already Exist";
+                    return Ok(res);
+                }
+
+                var RoleId = database.GetDataTable("select RoleId from  UserRoles where Status=1 and RoleName='Customer'").Rows[0]["RoleId"].ToString();
+                var result = database.ExecNonQuery($"INSERT INTO Users(UserId ,Name ,Email ,Password ,ImageUrl, Dob ,RoleId ,Status ,CreatedDateTime ,CreatedBy) VALUES ('{Guid.NewGuid().ToString()}', '{newuser.Name}', '{newuser.Email}', '{EncryptionDecryption.Encrypt(newuser.Password)}', '{null}', '{Convert.ToDateTime(newuser.Dob)}', '{RoleId}','1', '{DateTime.Now}', '{null}')");
+
+                if (result > 0)
+                {
+                    res.message = "Signup Successfully";
+                }
+                else
+                {
+                    res.message = "Signup Failed";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                res.message = ex.Message;
+            }
+
+            return Ok(res);
+        }
         [HttpDelete("{UserId}/{DeactiveBy}")]
         public async Task<ActionResult> DeleteUser(string UserId, string DeactiveBy)
         {
@@ -149,9 +186,94 @@ namespace DesiShop.Controllers.api
 
             var UserId = Request.UserId(config);
 
-            var UserList = database.GetDataTable($"select u.UserId,u.Name,u.Email,u.ImageUrl, role.RoleName from Users as u, UserRoles as role where u.UserId!='{UserId}' and role.RoleId =u.RoleId and u.Status=1 ");
+            var UserList = database.GetDataTable($"select u.UserId,u.Name,u.Email,u.Dob,u.ImageUrl, u.CreatedDateTime, role.RoleName, u.RoleId from Users as u, UserRoles as role where role.RoleId = u.RoleId and u.Status=1 ");
 
             return Ok(UserList);
+        }
+        [HttpGet]
+        public async Task<ActionResult> NewUsers()
+        {
+            await Task.Delay(0);
+           
+
+            var UserId = Request.UserId(config);
+
+            var UserList = database.GetDataTable($"select top(10) u.UserId,u.Name,u.Email,u.Dob,u.ImageUrl,u.CreatedDateTime, role.RoleName from Users as u, UserRoles as role where role.RoleId =u.RoleId and u.Status=1 ");
+
+            return Ok(UserList);
+        }
+        [HttpPost]
+        public async Task<ActionResult> FilterNewUsers(FilterUser user)
+        {
+            await Task.Delay(0);
+
+            var UserList = database.GetDataTable($"select u.UserId,u.Name,u.Email,u.Dob,u.ImageUrl,u.CreatedDateTime, role.RoleName from Users as u, UserRoles as role where role.RoleId =u.RoleId and u.Status=1 and u.CreatedDateTime >= '${Convert.ToDateTime(user.StartDate)}' and u.CreatedDateTime <= '${Convert.ToDateTime(user.EndDate)}'");
+
+            return Ok(UserList);
+        }
+        [HttpPost]
+        public async Task<ActionResult> UpdateUserAccount(AccountUpdate obj)
+        {
+            await Task.Delay(0);
+
+            Response res = new Response();
+
+            try
+            {
+                var CheckEmail = database.GetDataTable($"select * from Users where Email='{obj.Email}' and UserId!='{Request.UserId(config)}'");
+
+                if (CheckEmail.Rows.Count > 0)
+                {
+                    res.message = "Email Already Exist";
+                    return Ok(res);
+                }
+
+                var result = database.ExecNonQuery($"update Users set Name ='{obj.Name}', Email='{obj.Email}', Password='{EncryptionDecryption.Encrypt(obj.Password)}' where UserId='{Request.UserId(config)}'");
+
+                if (result > 0)
+                {
+                    res.message = "User Update Successfully";
+                }
+                else
+                {
+                    res.message = "User Updation Failed";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                res.message = ex.Message;
+            }
+
+            return Ok(res);
+        }
+        [HttpPost("{UserId}/{RoleId}")]
+        public async Task<ActionResult> UpdateRole(string UserId,string RoleId)
+        {
+            await Task.Delay(0);
+
+            Response res = new Response();
+
+            try
+            {
+                var result = database.ExecNonQuery($"update Users set RoleId ='{RoleId}' where UserId='{UserId}'");
+
+                if (result > 0)
+                {
+                    res.message = "User Update Successfully";
+                }
+                else
+                {
+                    res.message = "User Updation Failed";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                res.message = ex.Message;
+            }
+
+            return Ok(res);
         }
 
     }

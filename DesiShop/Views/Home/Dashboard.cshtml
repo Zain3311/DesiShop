@@ -4,10 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container">
+<div class="container m-t-40">
     <div class="row">
         <div class="col-12">
-            <!-- :::::::::: Start My Account Section :::::::::: -->
             <div class="my-account-area">
                 <div class="row">
                     <div class="col-xl-3 col-md-4">
@@ -23,24 +22,6 @@
                                     <a id="pills-order-tab" class="link--icon-left" data-toggle="pill" href="#pills-order" role="tab"
                                        aria-controls="pills-order" aria-selected="false">
                                         <i class="fas fa-shopping-cart"></i> Order
-                                    </a>
-                                </li>
-                                <li>
-                                    <a id="pills-download-tab" class="link--icon-left" data-toggle="pill" href="#pills-download" role="tab"
-                                       aria-controls="pills-download" aria-selected="false">
-                                        <i class="fas fa-cloud-download-alt"></i> Download
-                                    </a>
-                                </li>
-                                <li>
-                                    <a id="pills-payment-tab" class="link--icon-left" data-toggle="pill" href="#pills-payment" role="tab"
-                                       aria-controls="pills-payment" aria-selected="false">
-                                        <i class="fas fa-credit-card"></i> Payment Method
-                                    </a>
-                                </li>
-                                <li>
-                                    <a id="pills-address-tab" class="link--icon-left" data-toggle="pill" href="#pills-address" role="tab"
-                                       aria-controls="pills-address" aria-selected="false">
-                                        <i class="fas fa-map-marker-alt"></i> Address
                                     </a>
                                 </li>
                                 <li>
@@ -119,57 +100,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="pills-download" role="tabpanel"
-                                 aria-labelledby="pills-download-tab">
-                                <div class="my-account-download account-wrapper">
-                                    <h4 class="account-title">Download</h4>
-                                    <div class="account-table text-center m-t-30 table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th class="name">Product</th>
-                                                    <th class="date">Date</th>
-                                                    <th class="status">Expire</th>
-                                                    <th class="action">Download</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Mostarizing Oil</td>
-                                                    <td>Aug 22, 2020</td>
-                                                    <td>Yes</td>
-                                                    <td><a href="#">Download File</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Katopeno Altuni</td>
-                                                    <td>July 22, 2020</td>
-                                                    <td>Never</td>
-                                                    <td><a href="#">Download File</a></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="pills-payment" role="tabpanel"
-                                 aria-labelledby="pills-payment-tab">
-                                <div class="my-account-payment account-wrapper">
-                                    <h4 class="account-title">Payment Method</h4>
-                                    <p class="m-t-30">You Can't Saved Your Payment Method yet.</p>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="pills-address" role="tabpanel"
-                                 aria-labelledby="pills-address-tab">
-                                <div class="my-account-address account-wrapper">
-                                    <h4 class="account-title">Payment Method</h4>
-                                    <div class="account-address m-t-30">
-                                        <h6 class="name">Alex Tuntuni</h6>
-                                        <p>1355 Market St, Suite 900 <br> San Francisco, CA 94103</p>
-                                        <p>Mobile: (123) 456-7890</p>
-                                        <a class="box-btn m-t-25 " href="#"><i class="far fa-edit"></i> Edit Address</a>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="tab-pane fade" id="pills-account" role="tabpanel"
                                  aria-labelledby="pills-account-tab">
                                 <div class="my-account-details account-wrapper">
@@ -177,24 +107,14 @@
 
                                     <div class="account-details">
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <div class="form-box__single-group">
-                                                    <input type="text" placeholder="First Name">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-box__single-group">
-                                                    <input type="text" placeholder="Last Name">
+                                                    <input type="text" placeholder="Name" id="txtName">
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-box__single-group">
-                                                    <input type="text" placeholder="Display Name">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-box__single-group">
-                                                    <input type="text" placeholder="Email address">
+                                                    <input type="text" placeholder="Email address" id="txtEmail">
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -202,24 +122,19 @@
                                                     <h5 class="title">Password change</h5>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
                                                 <div class="form-box__single-group">
-                                                    <input type="password" placeholder="Current Password">
+                                                    <input type="password" placeholder="New Password" id="newPassword">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-box__single-group">
-                                                    <input type="password" placeholder="New Password">
+                                                    <input type="password" placeholder="Confirm Password" id="confirmPassword">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-box__single-group">
-                                                    <input type="password" placeholder="Confirm Password">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-box__single-group">
-                                                    <button class="btn btn--box btn--radius btn--small btn--black btn--black-hover-green btn--uppercase font--bold">Save Change</button>
+                                                    <button class="btn btn--box btn--radius btn--small btn--black btn--black-hover-green btn--uppercase font--bold" id="btnSaveChange">Save Change</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -229,7 +144,7 @@
                         </div>
                     </div>
                 </div>
-            </div><!-- :::::::::: End My Account Section :::::::::: -->
+            </div>
         </div>
     </div>
 </div>

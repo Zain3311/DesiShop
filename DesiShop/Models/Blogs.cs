@@ -8,6 +8,7 @@ namespace DesiShop.Models
     public class Blogs
     {
         public string BlogTitle { get; set; }
+        public string BlogDescription { get; set; }
         public string BlogContent { get; set; }
         public string Picture { get; set; }
         public string insetedbyId { get; set; }

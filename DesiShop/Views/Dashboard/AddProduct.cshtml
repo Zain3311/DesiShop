@@ -54,6 +54,89 @@
 
                                         </div>
                                     </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-6">
+                                            <div class="form-group">
+                                                <label class="form-label" for="protitle">Purchase Price</label>
+                                                <input type="text" class="form-control dt-full-name" id="protitle" placeholder="Enter Product Title" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-6">
+                                            <div class="form-group">
+                                                <label class="form-label" for="proprice">shipping Cost</label>
+                                                <input type="number" class="form-control dt-full-name" id="proprice" placeholder="Enter Price" />
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+
+                                    <div class="row">
+                                        <div class="col-md-5 col-5">
+                                            <div class="form-group">
+                                                <label class="form-label" for="protitle">Varient Title</label>
+                                                <input type="text" class="form-control dt-full-name" name="vTitle[]" id="protitle" placeholder="Enter Product Title" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 col-5">
+                                            <div class="form-group">
+                                                <label class="form-label" for="proprice">Varient Price</label>
+                                                <input type="number" class="form-control dt-full-name" id="proprice" name="vPrice[]" placeholder="Enter Price" />
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-2 col-2">
+                                            <div class="form-group">
+                                                <label class="form-label" for="proprice">Add Varients</label>
+                                                <input type="button" class="btn btn-secondary" id="btnAdd" value="Add" />
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <input type="button" class="btn btn-secondary" id="btnGet" value="Get Value" />
+                                    <div class="row" id="newRow">
+
+                                    </div>
+                                    <script>
+
+                                        $(document).ready(function () {
+
+                                            $("#btnAdd").click(function () {
+
+                                                $("#newRow").append('<div class="col-md-5 col-5" id="p"> <div class="form-group"> <label class="form-label" for="protitle">Product Title</label> <input type="text" class="form-control dt-full-name new" name="vTitle[]"  id="" placeholder="Varient Title" /> </div> </div> <div class="col-md-5 col-5" id="p"><div class="form-group"> <label class="form-label" for="proprice">Price</label> <input type="number" class="form-control dt-full-name" name="vPrice[]"  id="proprice" placeholder="Enter Price" /></div><div class="col-md-2 col-2" id="p"><div class="form-group"><input type="button" class="btn btn-danger" id="btnRemove" value="Remove" /> </div>');
+
+                                                $("#btnRemove").click(function () {
+                                                    $("#p").remove();
+                                                });
+                                            });
+
+                                        });
+
+                                    </script>
+
+
+
+
+
+                                    @*$("#newRow").append('<div class="col-md-5 col-5"> <div class="form-group"> <label class="form-label" for="protitle">Product Title</label> <input type="text" class="form-control dt-full-name" id="protitle" placeholder="Enter Product Title" /> </div> </div> <div class="col-md-5 col-5">
+        <div class="form-group"> <label class="form-label" for="proprice">Price</label> <input type="number" class="form-control dt-full-name" id="proprice" placeholder="Enter Price" /></div><div class="col-md-2 col-2">
+            <div class="form-group"> <label class="form-label" for="proprice">Add Varients</label> <input type="button" class="btn btn-secondary" id="btnAdd" value="Add" /> </div>');
+
+            });*@
+
+
+
+
+
                                     <div class="row mb-1">
                                         <div class="col-md-12 col-12">
                                             <label class="form-label" for="short-desc">Short Description</label>
@@ -75,7 +158,7 @@
                                         </div>
                                         <div class="col-md-6 col-6">
                                             <div class="form-group">
-                                                <label class="form-label" for="proqua">Price</label>
+                                                <label class="form-label" for="proqua">Stock Quantity</label>
                                                 <input type="number" class="form-control dt-full-name" id="proqua" placeholder="Enter Stock Quantity" />
                                             </div>
                                         </div>
@@ -104,7 +187,7 @@
                                                 <label class="d-block mb-1 text-lg-center">Categoires</label>
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                     <div class="row mb-1">
                                         <div class="col-md-12 col-12 text-center">
                                             <label class="btn btn-primary mr-75 mb-0" for="product-images">
@@ -122,8 +205,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                                    </div>
+                                </div>
                     </div>
                 </div>
             </section>
@@ -136,3 +219,4 @@
 <div class="drag-target"></div>
 
 <script src="/js/AddProduct.js"></script>
+

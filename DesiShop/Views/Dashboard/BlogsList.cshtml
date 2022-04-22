@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewData["Title"] = "BlogsList";
+    Layout = "~/Views/Shared/_Dashboard_Layout.cshtml";
+}
+
+
+<div class="app-content content ">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+        </div>
+        <div class="content-body">
+            <section class="app-user-list">
+                <div class="card">
+                    <div class="card-datatable table-responsive pt-0">
+                        <table class="user-list-table table" id="tblCategoryList">
+                            <thead class="thead-light">
+                                <tr>
+
+                                    <th>Blog Title</th>
+                                    <th>Image</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="categoryList"></tbody>
+
+                        </table>
+                    </div>
+
+                </div>
+                <!-- list section end -->
+            </section>
+            <!-- users list ends -->
+
+        </div>
+    </div>
+</div>
+<!-- END: Content-->
+
+<div class="sidenav-overlay"></div>
+<div class="drag-target"></div>
+
+<script src="/js/blog.js"></script>

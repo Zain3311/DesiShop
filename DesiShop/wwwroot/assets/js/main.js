@@ -154,74 +154,10 @@
     /************************************************
      * Product Slider - Style: Default [4 Grid, 2 Rows]
      ***********************************************/
-    $('.product-default-slider-4grid-2rows').slick({
-        arrows: true,
-        slidesToShow: 4,
-        infinite: false,
-        rows: 2,
-        slidesToScroll: 1,
-        easing: 'ease-out',
-        speed: 1000,
-        prevArrow: '<button type="button" class="default-slider__arrow default-slider__arrow--left prevArrow"><i class="far fa-chevron-left"></i></i></button>',
-        nextArrow: '<button type="button"  class="default-slider__arrow default-slider__arrow--right nextArrow"><i class="far fa-chevron-right"></i></button>',
-        responsive: [
-
-            {
-                breakpoint: 1200,
-                settings: {
-                    slidesToShow: 3
-                }
-            },
-            {
-                breakpoint: 992,
-                settings: {
-                    slidesToShow: 2,
-                }
-            },
-            {
-                breakpoint: 575,
-                settings: {
-                    slidesToShow: 1,
-                }
-            },
-        ]
-    });
 
     /************************************************
      * Product Slider - Style: Default [4 Grid, 1 Rows]
      ***********************************************/
-    $('.product-default-slider-4grid-1rows').slick({
-        arrows: true,
-        infinite: false,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        rows: 1,
-        easing: 'ease-out',
-        speed: 1000,
-        prevArrow: '<button type="button" class="default-slider__arrow default-slider__arrow--left prevArrow"><i class="far fa-chevron-left"></button>',
-        nextArrow: '<button type="button"  class="default-slider__arrow default-slider__arrow--right nextArrow"><i class="far fa-chevron-right"></button>',
-        responsive: [
-
-            {
-                breakpoint: 1200,
-                settings: {
-                    slidesToShow: 3
-                }
-            },
-            {
-                breakpoint: 992,
-                settings: {
-                    slidesToShow: 2,
-                }
-            },
-            {
-                breakpoint: 575,
-                settings: {
-                    slidesToShow: 1,
-                }
-            },
-        ]
-    });
 
     /************************************************
      * Testimonial Slider - Style:  [1 Grid, 1 Rows]

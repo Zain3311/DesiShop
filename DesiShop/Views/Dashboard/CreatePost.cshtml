@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewData["Title"] = "CreatePost";
+    Layout = "~/Views/Shared/_Dashboard_Layout.cshtml";
+}
+
+<script src="https://cdn.tiny.cloud/1/44p22ufzci97343qpz8nbvv8rprzdvr8p0yl6xjy9vr3dml1/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<div class="app-content content ">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper container-xxl p-0">
+        <div class="content-body">
+            <!-- Blog Edit -->
+            <div class="blog-edit-wrapper">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                
+                                <div action="javascript:;" class="mt-2">
+                                    <div class="row">
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group mb-2">
+                                                <label for="blog-edit-title">Title</label>
+                                                <input type="text" id="blog-title" class="form-control" placeholder="Enter Tilte"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group mb-2">
+                                                <label for="blog-edit-slug">Description</label>
+                                                <textarea type="text" id="blog-desc" class="form-control" placeholder="Enter Description"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group mb-2">
+                                                <label>Content</label>
+                                                <div id="blog-editor-wrapper">
+                                                    <div id="blog-editor-container">
+                                                        <textarea id="blog-content"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mb-2">
+                                            <div class="border rounded p-2">
+                                                <h4 class="mb-1">Blog Image</h4>
+                                                <div class="media flex-column flex-md-row">
+                                                    <img src="/UserFiles/person.png" id="blog-image" class="rounded mr-2 mb-1 mb-md-0" width="100" height="100" alt="Blog Featured Image" />
+                                                    <div class="media-body">
+                                                        <div class="d-inline-block">
+                                                            <div class="form-group mb-0">
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="blog-picture" accept="image/*" />
+                                                                    <label class="custom-file-label" for="blogCustomFile">Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-50 text-center">
+                                            <button class="btn btn-primary mr-1" id="btnSubmit">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/ Blog Edit -->
+
+        </div>
+    </div>
+</div>
+
+<script src="/js/addpost.js"></script>

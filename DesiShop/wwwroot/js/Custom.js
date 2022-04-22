@@ -3,6 +3,7 @@ var datatable = "";
 var datatable1 = "";
 
 function Datatable_Net() {
+    if ($.fn.dataTable?.ext)
     $.fn.dataTable.ext.errMode = 'none';
 
     datatable= $("#datatables").DataTable({
@@ -59,7 +60,8 @@ function Datatable_Net() {
 }
 
 function Datatable_NetById(tableId) {
-    $.fn.dataTable.ext.errMode = 'none';
+    if ($.fn.dataTable?.ext)
+        $.fn.dataTable.ext.errMode = 'none';
     datatable1 =  $("#" + tableId).DataTable({
 
 

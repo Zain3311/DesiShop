@@ -1,4 +1,6 @@
-﻿const getDataUrl = (img) => {
+﻿//const { htmlimports } = require("modernizr");
+
+const getDataUrl = (img) => {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onloadend = () => resolve(reader.result);
@@ -42,20 +44,35 @@ document.getElementById("change-picture").addEventListener("change", async funct
     let imageUrl = await getDataUrl(event.target.files[0]);
     $("#product-image").attr("src", imageUrl);
 })
+
+
+
 $("#btnSubmit").click(async function () {
+    debugger;
     var title = $("#protitle").val();
     var price = $("#proprice").val();
     var shortDesc = tinymce.get("short-desc").getContent();
     var fullDesc = tinymce.get("full-desc").getContent();
-    var isfeatured = $("#isfeatured").val();
+    var isfeatured = document.getElementById("isfeatured");
     var proqua = $("#proqua").val();
     var proDistype = $("#pro-distype").val();
     var prodis = $("#prodis").val();
-    var ImageFiles = document.getElementById("product-images").files;
+    var ImageFiles = Array.from(document.getElementById("product-images").files);
     var imagefile = document.getElementById("change-picture").files[0];
     ImageFiles.push(imagefile)
     var productImages = [];
     var categories = [];
+    const varientTitle = [];
+    $('input[name="vTitle[]"]').each(function () {
+        
+        varientTitle.push($(this).val());//code what you want on click of button
+    });
+    const varientPrice = [];
+    $('input[name="vPrice[]"]').each(function () {
+        int price = parseInt($(this).val());
+        varientPrice.push(price);//code what you want on click of button
+    });
+
 
     if (title.length == 0 || price.length == 0 || shortDesc.length == 0 || proqua.length == 0) {
 
@@ -73,16 +90,17 @@ $("#btnSubmit").click(async function () {
             });
             return;
         }
-            productImages = await FileUpload(ImageFiles)
-            imagefile = productImages[0];
-            productImages.shift();
-            $(".cat-item").each(function (ind, val) {
-                if (val.checked)
-                    categories.push(val.id.replace("cat-",""))
-            })
-        var product = { title: title, imageUrl: imagefile, shortDescription: shortDesc, description: fullDesc, price: price, stockQty: proqua, discount: prodis, discountType: proDistype, isfeatured: isfeatured.checked == true ? 1 : 0 }
-        var jsonObject = { product: product, productImages: productImages, categories: categories }
+        productImages = await FileUpload(ImageFiles)
+        imagefile = productImages[0];
+        productImages.shift();
+        $(".cat-item").each(function (ind, val) {
+            if (val.checked)
+                categories.push(val.id.replace("cat-", ""))
+        })
+        var product = { title: title, imageUrl: imagefile, shortDescription: shortDesc, description: fullDesc, price: price, stockQty: proqua, discount: prodis, discountType: proDistype, isfeatured: isfeatured.checked}
+        var jsonObject = { product: product, productImages: productImages, categories: categories, varientTitle: varientTitle, varientPrice: varientPrice }
 
+        Preloader("show");
         $.ajax({
             type: "POST",
             url: "/api/Product/AddProduct",
@@ -90,9 +108,9 @@ $("#btnSubmit").click(async function () {
             contentType: 'application/json',
             success: function (response) {
 
-
+                Preloader("hide");
                 if (response.message === "Product Added Successfully") {
-
+                    window.location.reload();
                     toastr['success'](response.message, 'Success!', {
                         closeButton: true,
                         tapToDismiss: false
@@ -109,6 +127,18 @@ $("#btnSubmit").click(async function () {
             },
 
         });
+
     }
 
-})
+});
+
+//$(document).ready(function () {
+
+//    $("#btnAdd").click(function () {
+
+//        $("#newRow").append('<div class="col-md-5 col-5"> <div class="form-group"> <label class="form-label" for="protitle">Product Title</label> <input type="text" class="form-control dt-full-name" id="protitle" placeholder="Enter Product Title" /> </div> </div> <div class="col-md-5 col-5"><div class="form-group"> <label class="form-label" for="proprice">Price</label> <input type="number" class="form-control dt-full-name" id="proprice" placeholder="Enter Price" /></div><div class="col-md-2 col-2"><div class="form-group"> <label class="form-label" for="proprice">Add Varients</label> <input type="button" class="btn btn-secondary" id="btnAdd" value="Add" /> </div>');
+
+//    });
+
+//});
+

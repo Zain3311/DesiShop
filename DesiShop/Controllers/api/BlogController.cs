@@ -27,13 +27,13 @@ namespace DesiShop.Controllers
             await Task.Delay(0);
 
             Response res = new Response();
-            if (database.ExecNonQuery("insert into Blogs (BlogTitle,BlogContent,Picture,Insetedbyid,deletedby,Status)values('" + blogs.BlogTitle + "','" + blogs.BlogContent + "','" + blogs.Picture + "','" + blogs.insetedbyId + "','" + blogs.deletedby + "','" + blogs.Status + "')") > 0)
+            if (database.ExecNonQuery("insert into Blogs (BlogTitle,BlogDescription,BlogContent,Picture,Insetedbyid,Status)values('" + blogs.BlogTitle + "','" + blogs.BlogDescription + "','" + HttpUtility.HtmlEncode(blogs.BlogContent) + "','" + blogs.Picture + "','" + Request.UserId(config) + "','1')") > 0)
             {
-                res.message = "Inserted Successfully";
+                res.message = "Post Inserted Successfully";
             }
             else
             {
-                res.message = "Insertation Failed";
+                res.message = "Post Insertation Failed";
             }
 
             return Ok(res);
@@ -43,21 +43,22 @@ namespace DesiShop.Controllers
         {
             await Task.Delay(0);
 
-            DataTable table = database.GetDataTable("select BlogId,BlogTitle,BlogContent,Picture from Blogs");
+            DataTable table = database.GetDataTable("select BlogId,BlogTitle,BlogDescription,Picture from Blogs  where Status=1");
             return Ok(table);
         }
-        [HttpPost("{BlogId}")]
-        public async Task<ActionResult> DeleteBlog(int BlogId)
+        [HttpDelete("{BlogId}")]
+        public async Task<ActionResult> DeleteBlog(string BlogId)
         {
             await Task.Delay(0);
             Response res = new Response();
-            if (database.ExecNonQuery("delete from Blogs where BlogId='" + BlogId + "'") > 0)
+            if (database.ExecNonQuery($"update Blogs set Status=0 where BlogId='{BlogId}' and Status=1 ") > 0)
             {
-                res.message = "Delete Successflly";
+                res.message = "Post Deleted Successfully";
+                res.data = new { id = BlogId};
             }
             else
             {
-                res.message = "Deletation Failed";
+                res.message = "Post Deletation Failed";
             }
             return Ok(res);
         }
@@ -82,7 +83,7 @@ namespace DesiShop.Controllers
         public async Task<ActionResult> TopBlogs()
         {
             await Task.Delay(0);
-            DataTable table = database.GetDataTable("select top(3) BlogId,BlogTitle,BlogContent,Picture from Blogs order by BlogId Desc");
+            DataTable table = database.GetDataTable("select top(3) BlogId,BlogTitle,BlogDescription,Picture from Blogs where Status=1 order by BlogId Desc");
             return Ok(table);
             
         }

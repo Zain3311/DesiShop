@@ -114,6 +114,7 @@ options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

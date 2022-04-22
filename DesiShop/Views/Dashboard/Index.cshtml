@@ -12,10 +12,45 @@
         </div>
         <div class="content-body">
 
-            <h1 style="margin-top: 200px;" class="text-center">Welcome to ProCare</h1>
+            <div class="row">
+                <div class="col-6">
+                    <section class="app-user-list">
+                        <div class="card">
+                            <div class="card-title text-center mt-2">New Users</div>
+                            <div class="card-datatable table-responsive pt-0">
+                                <table class="user-list-table table" id="datatables">
+                                    <thead class="thead-light">
+                                        <tr>
+
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="userList"></tbody>
+
+                                </table>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+                <div class="col-6">
+                    <section class="app-user-list">
+                        <div class="card">
+                            <div id="chart"></div>
+                        </div>
+                    </section>
+                </div>
+            </div>
 
         </div>
     </div>
-
 </div>
+<!-- END: Content-->
 
+<div class="sidenav-overlay"></div>
+<div class="drag-target"></div>
+
+<script src="/js/index.js"></script>

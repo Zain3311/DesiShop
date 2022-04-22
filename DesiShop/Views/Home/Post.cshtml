@@ -1,0 +1,34 @@
+﻿@using System.Data;
+@using System.Web;
+@{  
+    var table = (DataTable)ViewBag.post;
+    var post = table.Rows[0];
+    ViewData["Title"] = post["BlogTitle"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row flex-column-reverse flex-lg-row">
+        <div class="col-lg-12">
+            <div class="blog">
+                <div class="row">
+                    <!-- Start Single Blog List -->
+                    <div class="col-12">
+                        <div class="blog__type-single">
+                            <div class="img-responsive"><img src="@post["Picture"]" alt=""></div>
+                            <div class="blog__content">
+                                <h3 class="blog__title">@post["BlogTitle"]</h3>
+                                <div class="para m-tb-20">
+                                    <p class="block-quote">@post["BlogDescription"]</p>
+                                    <div class="para__text">@Html.Raw(HttpUtility.HtmlDecode(post["BlogContent"].ToString()))</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

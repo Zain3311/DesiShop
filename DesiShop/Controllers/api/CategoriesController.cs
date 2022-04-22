@@ -33,7 +33,7 @@ namespace DesiShop.Controllers.api
                 if(category.ParentCategory != null && category.ParentCategory !=0)
                 {
                 DataTable dataTable = database.GetDataTable($"select CategoryUrl from Categories where CategoryId='{category.ParentCategory}' and Status=1");
-                    Url = dataTable.Rows[0]["CategoryUrl"].ToString() + "/"+ category.Title.Replace(" ", "-").ToLower() + "-" + Guid.NewGuid().ToString().Substring(0,4);
+                    Url = dataTable.Rows[0]["CategoryUrl"].ToString() + "_"+ category.Title.Replace(" ", "-").ToLower() + "-" + Guid.NewGuid().ToString().Substring(0,4);
                 }
                 else
                 {
@@ -141,6 +141,13 @@ namespace DesiShop.Controllers.api
                 res.message = ex.Message;
             }
             return Ok(res);
+        }
+        [HttpGet]
+        public async Task<ActionResult> GetCategoryLogs()
+        {
+            await Task.Delay(0);
+            var table = database.GetDataTable("select clog.Count, cat.Title from CategoriesLog as clog inner join Categories as cat on clog.CategoryId=cat.CategoryId where clog.Status=1 and cat.Status=1 order by clog.Count");
+            return Ok(table);
         }
     }
 }

@@ -942,7 +942,7 @@ button.close {
 }
 .hero .hero-slider img {
   width: 100%;
-  object-fit: cover;
+  object-fit: fill;
   height: 300px;
 }
 @media (min-width: 768px) {
@@ -1091,7 +1091,7 @@ button.close {
 }
 .banner__bg img {
   width: 100%;
-  object-fit: cover;
+  object-fit: fill;
   height: 280px;
   object-position: center;
 }
@@ -2760,7 +2760,7 @@ input.round-input {
   display: block;
 }
 .blog__img img {
-  object-fit: cover;
+  object-fit: fill;
   width: 100%;
   height: 300px;
 }

@@ -124,6 +124,7 @@
     <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
     <!-- END: Footer-->
     <!-- BEGIN: Vendor JS-->
+    <script src="/dashboard//app-assets/vendors/js/jquery/jquery.min.js"></script>
     <script src="/dashboard/app-assets/vendors/js/vendors.min.js"></script>
     <script src="/Preloader/jquery.preloader.min.js"></script>
     <!-- BEGIN Vendor JS-->
@@ -159,20 +160,17 @@
                     height: 14
                 });
             }
-            @*alert("@ViewData["UserRole"]");*@
         })
 
 
-            function Preloader(action) {
-                if (action == "show")
-                {
-                    $('body').preloader({ text: '', percent: 'Tazadam ', duration: '', zIndex: '99999', setRelative: false });
-                }
-                else if (action== "hide" )
-                {
-                    $('body').preloader('remove');
-                }
+        function Preloader(action) {
+            if (action == "show") {
+                $('body').preloader({ text: '', percent: 'Tazadam ', duration: '', zIndex: '99999', setRelative: false });
             }
+            else if (action == "hide") {
+                $('body').preloader('remove');
+            }
+        }
 
 
     </script>

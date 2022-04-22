@@ -28,7 +28,7 @@
             <div class="col-md-7">
                 <div class="product-details-box m-b-60">
                     <h4 class="font--regular m-b-20">@product["Title"]</h4>
-                   
+
                     <div class="product__price m-t-5">
                         <span class="product__price product__price--large">Rs @product["Price"]</span>
                         @if (!String.IsNullOrEmpty(product["DiscountType"].ToString()))
@@ -44,10 +44,10 @@
                         }
                     </div>
                     <div class="product__desc m-t-25 m-b-30">
-                       @Html.Raw(HttpUtility.HtmlDecode(product["ShortDescription"].ToString()))
+                        @Html.Raw(HttpUtility.HtmlDecode(product["ShortDescription"].ToString()))
                     </div>
                     <div class="product-var p-tb-30">
-                       
+
                         <div class="product-quantity product-var__item d-flex align-items-center">
                             <span class="product-var__text">Quantity: </span>
                             <form class="quantity-scale m-l-20">
@@ -56,7 +56,12 @@
                         </div>
                         <div class="product-var__item">
                             <div class="dynmiac_checkout--button">
-                                <button class="btn btn--block btn--long btn--radius-tiny btn--green btn--green-hover-black text-uppercase m-r-35" id="btnCart" productId="@product["ProductId"]">Add to Cart</button>
+                                <div id="shareBlock"></div>
+                            </div>
+                        </div> 
+                        <div class="product-var__item">
+                            <div class="dynmiac_checkout--button">
+                                <button class="btn btn--block btn--long btn--radius-tiny btn--green btn--green-hover-black text-uppercase m-r-35" id="btnCart" price="@product["Price"]" productId="@product["ProductId"]">Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -79,7 +84,7 @@
                             <!-- Start Tab - Product Description -->
                             <div class="tab-pane show active" id="product-desc">
                                 <div class="para__content">
-
+                                    @Html.Raw(HttpUtility.HtmlDecode(product["Description"].ToString()))
                                 </div>
                             </div>
                         </div>
@@ -90,3 +95,17 @@
     </div>
 </div>
 <script src="/js/Home/product.js"></script>
+<script src="/js//share.js"></script>
+<script>
+
+    $('#shareBlock').cShare({
+        description: '@product["Title"]',
+        show_buttons: [
+            'fb',
+            'twitter',
+            'tumblr',
+            'pinterest',
+            'email'
+        ]
+    });
+</script>

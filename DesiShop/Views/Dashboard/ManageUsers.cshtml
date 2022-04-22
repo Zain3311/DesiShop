@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Manage Users";
+    Layout = "~/Views/Shared/_Dashboard_Layout.cshtml";
+}
+
+<div class="app-content content ">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+        </div>
+        <div class="content-body">
+            <!-- users list start -->
+            <section class="app-user-list">
+                <!-- users filter start -->
+                <!-- users filter end -->
+                <!-- list section start -->
+                <div class="card">
+                    <div class="card-datatable table-responsive pt-0">
+                        <table class="user-list-table table" id="datatables">
+                            <thead class="thead-light">
+                                <tr>
+
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="userList"></tbody>
+
+                        </table>
+                    </div>
+
+                </div>
+                <!-- list section end -->
+            </section>
+            <!-- users list ends -->
+
+        </div>
+    </div>
+</div>
+<!-- END: Content-->
+<div class="modal fade text-left" id="userUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel33">Update User</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row mb-1">
+                    <div class="col-md-12 col-12">
+                        <div class="form-group">
+                            <label class="form-label" for="userRole">Role</label>
+                            <select id="userRole" class="form-control">
+                                <option value="null">Select User Role</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnUserProduct">Update</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="sidenav-overlay"></div>
+<div class="drag-target"></div>
+
+<script src="/js/users.js"></script>

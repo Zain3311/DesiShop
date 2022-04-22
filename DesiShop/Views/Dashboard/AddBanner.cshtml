@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewData["Title"] = "AddBanner";
+    Layout = "~/Views/Shared/_Dashboard_Layout.cshtml";
+}
+
+<div class="app-content content ">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper container-xxl p-0">
+        <div class="content-body">
+            <div class="blog-edit-wrapper">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <div class="mt-2">
+                                    <div class="row">
+                                        <div class="col-md-6 col-6">
+                                            <div class="form-group mb-2">
+                                                <label for="banner-title">Title</label>
+                                                <input type="text" id="banner-title" class="form-control" placeholder="Enter Tilte" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-6">
+                                            <div class="form-group mb-2">
+                                                <label for="banner-link">Link</label>
+                                                <input type="text" id="banner-link" class="form-control" placeholder="Enter Link" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group mb-2">
+                                                <label for="banner-desc">Description</label>
+                                                <textarea type="text" id="banner-desc" class="form-control" placeholder="Enter Description"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mb-2">
+                                            <div class="border rounded p-2">
+                                                <h4 class="mb-1">Banner Image</h4>
+                                                <div class="media flex-column flex-md-row">
+                                                    <img src="/UserFiles/person.png" id="blog-image" class="rounded mr-2 mb-1 mb-md-0" width="100" height="100" alt="Blog Featured Image" />
+                                                    <div class="media-body">
+                                                        <div class="d-inline-block">
+                                                            <div class="form-group mb-0">
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="banner-picture" accept="image/*" />
+                                                                    <label class="custom-file-label" for="blogCustomFile">Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-50 text-center">
+                                            <button class="btn btn-primary mr-1" id="btnSubmit">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="/js/addbanner.js"></script>
